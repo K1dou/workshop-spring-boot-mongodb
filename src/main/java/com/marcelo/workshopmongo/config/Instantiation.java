@@ -3,6 +3,7 @@ package com.marcelo.workshopmongo.config;
 import com.marcelo.workshopmongo.domain.Post;
 import com.marcelo.workshopmongo.domain.User;
 import com.marcelo.workshopmongo.dto.AuthorDTO;
+import com.marcelo.workshopmongo.dto.CommentDTO;
 import com.marcelo.workshopmongo.repository.PostRepository;
 import com.marcelo.workshopmongo.repository.UserRepository;
 import com.marcelo.workshopmongo.resources.UserResource;
@@ -52,6 +53,19 @@ public class Instantiation implements CommandLineRunner {
         maria.getPosts().addAll(Arrays.asList(p1,p2));
 
         userRepository.save(maria);
+
+       CommentDTO commentDTO = new CommentDTO("Boa viagem mano!",sdf.parse("21/03/2018"),new AuthorDTO(alex));
+       CommentDTO commentDTO2 = new CommentDTO("Aproveite!",sdf.parse("22/03/2018"),new AuthorDTO(bob));
+       CommentDTO commentDTO3 = new CommentDTO("Tenha um ótimo dia!",sdf.parse("23/03/2018"),new AuthorDTO(alex));
+
+
+
+
+
+        p1.getComments().addAll(Arrays.asList(commentDTO,commentDTO2));
+        p2.getComments().add(commentDTO3);
+
+        postRepository.saveAll(Arrays.asList(p1,p2));
 
 
 
